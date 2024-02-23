@@ -1,6 +1,7 @@
 package com.practo.service.Impl;
 
 import com.practo.entity.Doctor;
+import com.practo.exception.ResourceNotFoundException;
 import com.practo.payload.DoctorDto;
 import com.practo.repository.DoctorRepository;
 import com.practo.service.DoctorService;
@@ -33,6 +34,15 @@ public class DoctorServiceImpl implements DoctorService {
         List<DoctorDto> collect = doctorList.stream().map(d -> mapToDto(d)).collect(Collectors.toList());
         return collect;
     }
+
+    @Override
+    public DoctorDto findByDoctorId(long doctorId) {
+        Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(
+                () -> new ResourceNotFoundException("Doctor not found with id:" + doctorId)
+        );
+        return  mapToDto(doctor);
+    }
+
     Doctor mapToEntity(DoctorDto doctorDto) {
         Doctor dto = modelMapper.map(doctorDto, Doctor.class);
         return dto;
