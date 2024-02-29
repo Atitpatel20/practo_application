@@ -5,18 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "patients")
 @Entity
+@Table(name = "bookings")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patient {
+public class Booking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private String email;
-    private String mobile;
-    private String diseases;
-    private String age;
+    private long doctorId;
+    private long patientId;
+    private String bookingTime;
 }

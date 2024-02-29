@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorReviewDto {
-    private DoctorDto doctor;
-    private List<ReviewDto> reviews;
-    private double ratingPercentage;
+
+public class BookingDto {
+    private long doctorId;
+    private long patientId;
+    private String bookingTime;
 }
